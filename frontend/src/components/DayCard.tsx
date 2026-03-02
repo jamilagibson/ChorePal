@@ -76,7 +76,7 @@ const DayCard = ({ day, chores }: DayCardProps): React.JSX.Element => {
   };
 
   return (
-    <div className='bg-linear-to-r from-gray-300 via-gray-500 to-gray-700 dark:from-gray-700 dark:via-gray-800 dark:to-gray-900 text-blue-900 dark:text-gray-100 rounded-2xl shadow-lg p-5 flex flex-col gap-5 mt-6 w-90'>
+    <div className='bg-white/15 dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10 text-white rounded-2xl shadow-xl p-5 flex flex-col gap-4 w-full'>
 
       {/* Visually hidden aria-live region — announces state changes to screen readers */}
       <div
@@ -88,11 +88,13 @@ const DayCard = ({ day, chores }: DayCardProps): React.JSX.Element => {
         {announcement}
       </div>
 
-      <h2 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h2>
+      <h2 className='text-base font-bold tracking-widest uppercase text-white/60 border-b border-white/20 pb-2'>
+        {day.toUpperCase()}
+      </h2>
 
-      <div className='bg-surfaceLight dark:bg-gray-800/60 rounded-xl p-4 flex flex-col gap-3'>
+      <div className='flex flex-col gap-3'>
         {chores.length > 0 ? (
-          <ul className='list-disc list-inside text-primaryDark dark:text-gray-100 space-y-1'>
+          <ul className='list-none space-y-2'>
             {chores.map((chore) => (
               <motion.li
                 key={chore._id}
@@ -136,7 +138,7 @@ const DayCard = ({ day, chores }: DayCardProps): React.JSX.Element => {
             ))}
           </ul>
         ) : (
-          <p className='text-sm text-black/70 dark:text-white/60 italic'>No chores assigned.</p>
+          <p className='text-sm text-white/50 italic'>No chores assigned.</p>
         )}
 
         <button
@@ -144,7 +146,7 @@ const DayCard = ({ day, chores }: DayCardProps): React.JSX.Element => {
           aria-label={`Add new chore for ${day}`}
           className='self-start bg-accentOrange text-white rounded-full px-4 py-2 text-sm font-semibold hover:bg-accentOrangeDark transition duration-200'
         >
-          Add New Chore
+          + Add Chore
         </button>
 
         {showAddForm && (
