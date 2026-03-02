@@ -62,16 +62,18 @@ function Dashboard(): React.JSX.Element {
   }, [chores]);
 
   return (
-    <div>
+    <div className='min-h-screen'>
       <Navbar wantedUser={lowestUser} />
-      <main id='main-content'>
+      <main id='main-content' className='px-6 py-6 max-w-screen-xl mx-auto'>
         {loading && (
-          <p role='status' aria-live='polite'>
+          <p role='status' aria-live='polite'
+             className='text-center text-white/70 py-8 text-lg'>
             Loading chores...
           </p>
         )}
         {error && (
-          <p role='alert' aria-live='assertive'>
+          <p role='alert' aria-live='assertive'
+             className='text-center text-red-300 py-8'>
             Error: {error}
           </p>
         )}

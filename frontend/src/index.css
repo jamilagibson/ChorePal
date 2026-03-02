@@ -62,6 +62,11 @@
 
 body {
   background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  font-family: var(--sans);
+}
+
+h1, h2, h3 {
+  font-family: var(--display);
 }
 
 /* Dark mode body — deeper navy gradient */

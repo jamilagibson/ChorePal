@@ -16,46 +16,41 @@ const Navbar = ({ wantedUser }: NavbarProps): React.JSX.Element => {
   }
 
   return (
-    <nav
-      aria-label='Main navigation'
-      className='flex items-center relative dark:bg-gray-900/40'
-    >
-      <img
-        src='/chorepal-logo-optimized.png'
-        width='150'
-        height='150'
-        alt='ChorePal Logo'
-      />
-      <div>
-        <h1 className='text-6xl text-black dark:text-white font-extrabold drop-shadow-sm'>
-          ChorePal
-        </h1>
-        <h3 className='text-2xl font-semibold text-orange-800 dark:text-orange-300 mt-2'>
-          Plan it. Do it.
-        </h3>
-        <div className='poster-container' aria-label='Wanted poster'>
-          <div className='poster-title' aria-hidden='true'>
-            🔥 Wanted 🔥
-          </div>
-          <div className='poster-user'>
-            {wantedUser ? wantedUser : 'No one... yet'}
-          </div>
-          <div className='poster-divider'>Dead or Alive</div>
+    <nav aria-label='Main navigation' className='navbar'>
+      {/* Left: logo + title stacked */}
+      <div className='navbar-brand'>
+        <img
+          src='/chorepal-logo-optimized.png'
+          width='60'
+          height='60'
+          alt='ChorePal Logo'
+        />
+        <div>
+          <h1 className='navbar-title'>ChorePal</h1>
+          <p className='navbar-tagline'>Plan it. Do it.</p>
         </div>
       </div>
 
-      <div className='ml-auto mr-5 flex items-center gap-3'>
+      {/* Center: Wanted Poster — inline, not absolute */}
+      {wantedUser && (
+        <div className='wanted-poster' aria-label='Wanted poster'>
+          <div className='poster-title' aria-hidden='true'>
+            🔥 Wanted 🔥
+          </div>
+          <div className='poster-user'>{wantedUser}</div>
+          <div className='poster-divider'>Needs to catch up!</div>
+        </div>
+      )}
+
+      {/* Right: dark mode toggle + logout */}
+      <div className='navbar-actions'>
         {/* Dark mode toggle — WCAG: role=switch, aria-checked, dynamic aria-label */}
         <button
           role='switch'
           aria-checked={isDark}
           aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
           onClick={toggleDark}
-          className='w-10 h-10 rounded-full flex items-center justify-center
-                     bg-gray-200 hover:bg-gray-300
-                     dark:bg-gray-700 dark:hover:bg-gray-600
-                     text-gray-800 dark:text-yellow-300
-                     transition-colors duration-200'
+          className='dark-toggle'
         >
           {isDark ? (
             /* Sun — shown in dark mode to switch to light */
@@ -86,10 +81,7 @@ const Navbar = ({ wantedUser }: NavbarProps): React.JSX.Element => {
           )}
         </button>
 
-        <button
-          onClick={handleLogout}
-          className='dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600'
-        >
+        <button onClick={handleLogout} className='logout-btn'>
           Log Out
         </button>
       </div>
