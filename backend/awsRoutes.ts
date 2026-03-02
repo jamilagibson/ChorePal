@@ -9,20 +9,21 @@ const awsRoutes = express.Router();
 const s3Bucket = 'ptangatuestorage';
 const accessKeyId = process.env['AWS_ACCESS_KEY'];
 const secretAccessKey = process.env['AWS_SECRET_KEY'];
+const s3Configured = Boolean(accessKeyId && secretAccessKey);
 
-if (!accessKeyId || !secretAccessKey) {
-  throw new Error(
-    'AWS_ACCESS_KEY and AWS_SECRET_KEY environment variables must be set'
-  );
+if (!s3Configured) {
+  console.warn('AWS_ACCESS_KEY / AWS_SECRET_KEY not set — image endpoint disabled.');
 }
 
-const s3Client = new S3Client({
-  region: 'us-east-2',
-  credentials: {
-    accessKeyId,
-    secretAccessKey,
-  },
-});
+const s3Client = s3Configured
+  ? new S3Client({
+      region: 'us-east-2',
+      credentials: {
+        accessKeyId: accessKeyId as string,
+        secretAccessKey: secretAccessKey as string,
+      },
+    })
+  : null;
 
 // Retrieve image from S3 and return as base64 data URL
 awsRoutes.get(
@@ -33,6 +34,11 @@ awsRoutes.get(
       Bucket: s3Bucket,
       Key: filename,
     };
+
+    if (!s3Client) {
+      res.status(503).json({ error: 'Image service not configured.' });
+      return;
+    }
 
     try {
       const data = await s3Client.send(new GetObjectCommand(params));
