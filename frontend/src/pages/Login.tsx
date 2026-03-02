@@ -68,12 +68,12 @@ function Login(): React.JSX.Element {
   return (
     <div className='wrapper'>
       <div>
-        <h2>
+        <h1>
           Welcome to ChorePal
           <span className='block'>
             {isLoginMode ? 'Login' : 'Create Account'}
           </span>
-        </h2>
+        </h1>
         <form
           onSubmit={handleSubmit}
           className='flex flex-col gap-3'
@@ -98,7 +98,7 @@ function Login(): React.JSX.Element {
           <div className='flex flex-col gap-1'>
             <label htmlFor='email'>Email:</label>
             <input
-              type='text'
+              type='email'
               id='email'
               name='email'
               value={email}

@@ -25,7 +25,7 @@ const WeekView = ({ chores }: WeekViewProps): React.JSX.Element => {
           );
           return <DayCard key={day} day={day} chores={choresForDay} />;
         })}
-        <div />
+        <div aria-hidden='true' />
       </div>
     </section>
   );

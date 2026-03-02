@@ -60,7 +60,7 @@ const AddChoreForm = ({ day, onClose }: AddChoreFormProps): React.JSX.Element =>
 
   return (
     <div className='bg-white dark:bg-gray-800 dark:text-white p-4 rounded shadow-md mt-4'>
-      <h3>Add New Chore for {day.toUpperCase()}</h3>
+      <h3 className='font-semibold mb-2'>Add New Chore for {day.toUpperCase()}</h3>
       {formError && (
         <p
           id='add-chore-error'
