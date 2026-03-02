@@ -34,10 +34,17 @@
 
 ### Heading hierarchy
 ```
-h1 — "ChorePal" (Navbar)
-  h3 — Day name (DayCard: "Monday", "Tuesday", etc.)
-  h3 — "Add Chore" (AddChore form heading)
+Login page:
+  h1 — "Welcome to ChorePal / Login" (Login.tsx)
+
+Dashboard page:
+  h1 — "ChorePal" (Navbar)
+    h2 — Day name (DayCard: "Monday", "Tuesday", etc.)
+      h3 — "Add New Chore for [day]" (AddChore form, rendered inside DayCard)
 ```
+Previously `<h3>` was used for day names, skipping `h2` entirely — a WCAG 1.3.1 violation. Fixed by promoting day headings to `h2` and confirming AddChore heading stays `h3` (correctly nested).
+
+Login page previously used `<h2>` as the first heading with no `<h1>` on the page (Navbar with `<h1>` only renders on Dashboard). Fixed by changing to `<h1>`.
 
 ### Forms
 - All `<input>` and `<select>` elements have an associated `<label>` via `htmlFor`/`id` or `aria-label`

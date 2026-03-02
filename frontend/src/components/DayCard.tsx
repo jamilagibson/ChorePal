@@ -88,7 +88,7 @@ const DayCard = ({ day, chores }: DayCardProps): React.JSX.Element => {
         {announcement}
       </div>
 
-      <h3 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h3>
+      <h2 className='text-2xl font-bold tracking-wide'>{day.toUpperCase()}</h2>
 
       <div className='bg-surfaceLight dark:bg-gray-800/60 rounded-xl p-4 flex flex-col gap-3'>
         {chores.length > 0 ? (
